@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Smartphone, BarChart3, Zap, Shield, TrendingUp, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import factoLogo from '@/assets/facto-logo.png';
 
 const Landing = () => {
   return (
@@ -10,7 +9,7 @@ const Landing = () => {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center"><img src={factoLogo} alt="FACTO" className="h-8" /></Link>
+          <Link to="/" className="font-display text-2xl font-bold text-gradient">FACTO</Link>
           <div className="flex gap-3">
             <Button variant="ghost" asChild><Link to="/app">Soy Consumidor</Link></Button>
             <Button asChild className="gradient-primary text-primary-foreground border-0"><Link to="/business">Soy Negocio</Link></Button>
