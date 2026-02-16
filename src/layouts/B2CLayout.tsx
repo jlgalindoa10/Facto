@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, FileText, BarChart2, User, Bell } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import factoLogo from '@/assets/facto-logo.png';
 
 const tabs = [
   { path: '/app', icon: Home, label: 'Inicio' },
@@ -17,7 +18,7 @@ export default function B2CLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background max-w-md mx-auto relative">
       {/* Header */}
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-border">
-        <Link to="/" className="font-display text-xl font-bold text-gradient">FACTO</Link>
+        <Link to="/" className="flex items-center"><img src={factoLogo} alt="FACTO" className="h-7" /></Link>
         <div className="flex items-center gap-3">
           <button className="relative p-2 rounded-lg hover:bg-muted transition-colors">
             <Bell className="h-5 w-5 text-muted-foreground" />
