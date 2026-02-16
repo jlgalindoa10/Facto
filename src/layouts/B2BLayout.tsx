@@ -4,6 +4,7 @@ import { Home, List, Users, BarChart3, Settings, Menu, X, ChevronUp, Crown } fro
 import { cn } from '@/lib/utils';
 import { businesses } from '@/data/mockData';
 import { Button } from '@/components/ui/button';
+import factoLogo from '@/assets/facto-logo.png';
 
 const navItems = [
   { path: '/business', icon: Home, label: 'Inicio' },
@@ -23,7 +24,7 @@ export default function B2BLayout({ children }: { children: ReactNode }) {
   const SidebarContent = () => (
     <>
       <div className="p-4 border-b border-sidebar-border">
-        <Link to="/" className="font-display text-2xl font-bold text-sidebar-primary">FACTO</Link>
+        <Link to="/" className="flex items-center"><img src={factoLogo} alt="FACTO" className="h-8 brightness-0 invert" /></Link>
         <p className="text-xs text-sidebar-foreground/60 mt-1">Dashboard Negocio</p>
       </div>
       <nav className="flex-1 p-3 space-y-1">
