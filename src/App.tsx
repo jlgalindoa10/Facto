@@ -14,6 +14,7 @@ import B2BDashboard from "./pages/b2b/B2BDashboard";
 import B2BTransactions from "./pages/b2b/B2BTransactions";
 import B2BCustomers from "./pages/b2b/B2BCustomers";
 import B2BAnalytics from "./pages/b2b/B2BAnalytics";
+import B2BInvoicing from "./pages/b2b/B2BInvoicing";
 import B2BSettings from "./pages/b2b/B2BSettings";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/business/transactions" element={<B2BLayout><B2BTransactions /></B2BLayout>} />
           <Route path="/business/customers" element={<B2BLayout><B2BCustomers /></B2BLayout>} />
           <Route path="/business/analytics" element={<B2BLayout><B2BAnalytics /></B2BLayout>} />
+          <Route path="/business/invoicing" element={<B2BLayout><B2BInvoicing /></B2BLayout>} />
           <Route path="/business/settings" element={<B2BLayout><B2BSettings /></B2BLayout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>

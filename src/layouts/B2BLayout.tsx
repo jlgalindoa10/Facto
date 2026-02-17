@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, List, Users, BarChart3, Settings, Menu, X, ChevronUp, Crown } from 'lucide-react';
+import { Home, List, Users, BarChart3, Settings, Menu, X, ChevronUp, Crown, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { businesses } from '@/data/mockData';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,7 @@ const navItems = [
   { path: '/business/transactions', icon: List, label: 'Transacciones' },
   { path: '/business/customers', icon: Users, label: 'Clientes' },
   { path: '/business/analytics', icon: BarChart3, label: 'Analytics' },
+  { path: '/business/invoicing', icon: FileText, label: 'Facturación Rápida' },
   { path: '/business/settings', icon: Settings, label: 'Configuración' },
 ];
 
