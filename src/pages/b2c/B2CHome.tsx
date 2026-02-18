@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Sparkles, ChevronRight } from 'lucide-react';
+import { Plus, Sparkles, ChevronRight, BellRing, Receipt, Utensils } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { transactions, getBusinessById, formatCOP, categoryLabels, users } from '@/data/mockData';
 import InvoiceDetailModal from '@/components/InvoiceDetailModal';
 import type { Transaction } from '@/data/mockData';
@@ -13,6 +14,7 @@ const userTxns = transactions.filter(t => t.userId === currentUser.id).slice(0, 
 
 export default function B2CHome() {
   const [selectedTxn, setSelectedTxn] = useState<Transaction | null>(null);
+  const [checkedIn, setCheckedIn] = useState<string | null>(null);
 
   return (
     <div className="space-y-6">
@@ -38,6 +40,71 @@ export default function B2CHome() {
       <div className="flex items-center gap-2 px-3 py-2 bg-secondary/10 rounded-lg">
         <span className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
         <span className="text-xs text-muted-foreground">Data protegida · Anonimizada · Conforme Ley 1581</span>
+      </div>
+
+      {/* Restaurant Mode (Check-in) */}
+      <div className="bg-card rounded-xl border border-border p-5 shadow-sm">
+        <h3 className="font-display font-semibold mb-3 flex items-center gap-2">
+          🍽️ Modo Restaurante
+        </h3>
+
+        {!checkedIn ? (
+          <div className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Selecciona dónde estás para pedir tu cuenta o llamar al mesero.
+            </p>
+            <Select onValueChange={(val) => setCheckedIn(val)}>
+              <SelectTrigger>
+                <SelectValue placeholder="🔍 ¿Dónde estás comiendo?" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="el-cielo">El Cielo - Zona G</SelectItem>
+                <SelectItem value="crepes">Crepes & Waffles - Andino</SelectItem>
+                <SelectItem value="osaka">Osaka - P. La 93</SelectItem>
+                <SelectItem value="home-burgers">Home Burgers - Calle 81</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        ) : (
+          <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2">
+            <div className="flex items-center justify-between bg-primary/5 p-3 rounded-lg border border-primary/10">
+              <div>
+                <div className="text-xs text-muted-foreground">Estás en:</div>
+                <div className="font-bold text-primary">
+                  {['El Cielo', 'Crepes & Waffles', 'Osaka', 'Home Burgers'].find(n => n.toLowerCase().includes(checkedIn.replace('-', ' '))) || 'Restaurante'}
+                </div>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => setCheckedIn(null)} className="h-8 text-xs">
+                Salir
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant="outline"
+                className="h-auto py-3 flex flex-col gap-1 border-primary/20 hover:bg-primary/5"
+                onClick={() => toast.success('Mesero notificado', { description: 'Alguien vendrá a tu mesa pronto.' })}
+              >
+                <BellRing className="h-5 w-5 text-primary" />
+                <span className="text-xs font-medium">Llamar Mesero</span>
+              </Button>
+              <Button
+                className="h-auto py-3 flex flex-col gap-1 gradient-primary text-primary-foreground shadow-md"
+                onClick={() => {
+                  toast.success('Cuenta solicitada', { description: 'El restaurante ha recibido tu solicitud.' });
+                  // Here we would trigger the B2B side update
+                }}
+              >
+                <Receipt className="h-5 w-5" />
+                <span className="text-xs font-medium">Pedir Cuenta</span>
+              </Button>
+            </div>
+
+            <Button variant="secondary" className="w-full text-xs h-8">
+              <Utensils className="mr-2 h-3 w-3" /> Ver Menú Digital
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Recent Invoices */}
