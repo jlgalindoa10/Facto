@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./pages/Landing";
+import LandingPage from "./pages/LandingPage";
 import B2CLayout from "./layouts/B2CLayout";
 import B2BLayout from "./layouts/B2BLayout";
 import B2CHome from "./pages/b2c/B2CHome";
@@ -27,7 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<LandingPage />} />
           {/* B2C Routes */}
           <Route path="/app" element={<B2CLayout><B2CHome /></B2CLayout>} />
           <Route path="/app/invoices" element={<B2CLayout><B2CInvoices /></B2CLayout>} />
