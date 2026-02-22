@@ -1,48 +1,35 @@
-import { LucideIcon, Info } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from '@/lib/utils';
+import { LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface KPICardProps {
   title: string;
   value: string;
-  change: string;
+  change?: string;
+  changePositive?: boolean;
   icon: LucideIcon;
   subtitle?: string;
-  tooltip?: string;
 }
 
-export default function KPICard({ title, value, change, icon: Icon, subtitle, tooltip }: KPICardProps) {
-  const isPositive = change.startsWith('+');
-
+export default function KPICard({ title, value, change, changePositive = true, icon: Icon, subtitle }: KPICardProps) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium flex items-center gap-2">
-          {title}
-          {tooltip && (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Info className="h-3 w-3 text-muted-foreground hover:text-foreground transition-colors" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-[200px] text-xs">{tooltip}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-        </CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
-        <div className="flex items-center text-xs mt-1">
-          <span className={isPositive ? "text-green-500 font-medium" : "text-red-500 font-medium"}>
+    <div className="bg-card rounded-xl border border-border p-5 shadow-card hover:shadow-elevated transition-shadow">
+      <div className="flex items-start justify-between mb-3">
+        <span className="text-sm text-muted-foreground font-medium">{title}</span>
+        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+          <Icon className="h-4 w-4 text-primary" />
+        </div>
+      </div>
+      <div className="text-2xl font-display font-bold tabular-nums">{value}</div>
+      {change && (
+        <div className="flex items-center gap-1.5 mt-1.5">
+          {changePositive ? <TrendingUp className="h-3.5 w-3.5 text-success" /> : <TrendingDown className="h-3.5 w-3.5 text-destructive" />}
+          <span className={cn('text-sm font-medium tabular-nums', changePositive ? 'text-success' : 'text-destructive')}>
             {change}
           </span>
-          {!change && subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
+          {subtitle && <span className="text-xs text-muted-foreground">{subtitle}</span>}
         </div>
-      </CardContent>
-    </Card>
+      )}
+      {!change && subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
+    </div>
   );
 }

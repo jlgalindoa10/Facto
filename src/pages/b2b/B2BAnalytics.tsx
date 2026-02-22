@@ -62,30 +62,9 @@ export default function B2BAnalytics() {
 
       {/* Executive Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <KPICard
-          title="Tasa de Retención"
-          value="68%"
-          change="+23%"
-          icon={TrendingUp}
-          subtitle="Industria: 45%"
-          tooltip="Porcentaje de clientes únicos que regresan en menos de 30 días."
-        />
-        <KPICard
-          title="Rotación de Mesas"
-          value="2.3 turnos"
-          change="+53%"
-          icon={BarChart3}
-          subtitle="Antes: 1.5"
-          tooltip="Promedio de veces que se ocupa una mesa completa durante un turno de servicio."
-        />
-        <KPICard
-          title="NPS Estimado"
-          value="72"
-          change="+60%"
-          icon={Award}
-          subtitle="Industria: 45"
-          tooltip="Net Promoter Score calculado basado en feedback directo y propinas voluntarias."
-        />
+        <KPICard title="Tasa de Retención" value="68%" change="+23%" icon={TrendingUp} subtitle="Industria: 45%" />
+        <KPICard title="Rotación de Mesas" value="2.3 turnos" change="+53%" icon={BarChart3} subtitle="Antes: 1.5" />
+        <KPICard title="NPS Estimado" value="72" change="+60%" icon={Award} subtitle="Industria: 45" />
       </div>
 
       {/* Top Products */}
