@@ -10,9 +10,6 @@ const Landing = () => {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link to="/" className="font-display text-2xl font-bold text-gradient">FACTO</Link>
-          <div className="hidden md:flex gap-6 items-center">
-            <Link to="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Sobre Nosotros</Link>
-          </div>
           <div className="flex gap-3">
             <Button variant="ghost" asChild><Link to="/app">Soy Consumidor</Link></Button>
             <Button asChild className="gradient-primary text-primary-foreground border-0"><Link to="/business">Soy Negocio</Link></Button>
@@ -104,8 +101,6 @@ const Landing = () => {
           </motion.div>
         </div>
       </section>
-
-
 
       {/* How it works */}
       <section className="py-20 px-6 bg-card border-y border-border">

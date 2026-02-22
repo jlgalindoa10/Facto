@@ -1,15 +1,10 @@
-import React, { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PageLoader from "./components/PageLoader"; // Assuming PageLoader is in this path or defined elsewhere
-
-// Lazy load Pages & Layouts
-const LandingPage = React.lazy(() => import('./pages/LandingPage'));
-const About = React.lazy(() => import('./pages/About'));
-const B2CLayout = React.lazy(() => import('./layouts/B2CLayout'));
+import Landing from "./pages/Landing";
+import B2CLayout from "./layouts/B2CLayout";
 import B2BLayout from "./layouts/B2BLayout";
 import B2CHome from "./pages/b2c/B2CHome";
 import B2CInvoices from "./pages/b2c/B2CInvoices";
@@ -31,25 +26,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<About />} />
-            {/* B2C Routes */}
-            <Route path="/app" element={<B2CLayout><B2CHome /></B2CLayout>} />
-            <Route path="/app/invoices" element={<B2CLayout><B2CInvoices /></B2CLayout>} />
-            <Route path="/app/insights" element={<B2CLayout><B2CInsights /></B2CLayout>} />
-            <Route path="/app/profile" element={<B2CLayout><B2CProfile /></B2CLayout>} />
-            {/* B2B Routes */}
-            <Route path="/business" element={<B2BLayout><B2BDashboard /></B2BLayout>} />
-            <Route path="/business/transactions" element={<B2BLayout><B2BTransactions /></B2BLayout>} />
-            <Route path="/business/customers" element={<B2BLayout><B2BCustomers /></B2BLayout>} />
-            <Route path="/business/analytics" element={<B2BLayout><B2BAnalytics /></B2BLayout>} />
-            <Route path="/business/invoicing" element={<B2BLayout><B2BInvoicing /></B2BLayout>} />
-            <Route path="/business/settings" element={<B2BLayout><B2BSettings /></B2BLayout>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          {/* B2C Routes */}
+          <Route path="/app" element={<B2CLayout><B2CHome /></B2CLayout>} />
+          <Route path="/app/invoices" element={<B2CLayout><B2CInvoices /></B2CLayout>} />
+          <Route path="/app/insights" element={<B2CLayout><B2CInsights /></B2CLayout>} />
+          <Route path="/app/profile" element={<B2CLayout><B2CProfile /></B2CLayout>} />
+          {/* B2B Routes */}
+          <Route path="/business" element={<B2BLayout><B2BDashboard /></B2BLayout>} />
+          <Route path="/business/transactions" element={<B2BLayout><B2BTransactions /></B2BLayout>} />
+          <Route path="/business/customers" element={<B2BLayout><B2BCustomers /></B2BLayout>} />
+          <Route path="/business/analytics" element={<B2BLayout><B2BAnalytics /></B2BLayout>} />
+          <Route path="/business/invoicing" element={<B2BLayout><B2BInvoicing /></B2BLayout>} />
+          <Route path="/business/settings" element={<B2BLayout><B2BSettings /></B2BLayout>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
